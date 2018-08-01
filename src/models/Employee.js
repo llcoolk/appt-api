@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('./index');
 
-const Employees = sequelize.define("employees", {
+const Employee = sequelize.define("employee", {
   firstName: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -27,6 +27,17 @@ const Employees = sequelize.define("employees", {
   timeStamps: false
 });
 
-Employees.hasMany(Appts);
+Appt.belongsTo(Employee)
+Employee.hasMany(Appt);
 
-module.exports = Customers;
+Employee.sync({
+  force: true
+}).then(() => {
+  return Employee.create({
+    firstName: 'Leen',
+    lastName: 'Kim',
+    phone: '7145551212'
+  });
+});
+
+module.exports = Employee;

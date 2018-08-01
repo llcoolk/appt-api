@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('./index');
 
-const Customers = sequelize.define("customers", {
+const Customer = sequelize.define("customer", {
   firstName: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -27,4 +27,14 @@ const Customers = sequelize.define("customers", {
   timeStamps: false
 });
 
-module.exports = Customers;
+Customer.sync({
+  force: true
+}).then(() => {
+  return Customer.create({
+    firstName: 'Justin',
+    lastName: 'Kim',
+    phone: '7145551212'
+  });
+});
+
+module.exports = Customer;

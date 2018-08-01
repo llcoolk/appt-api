@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('./index');
 
-const Appts = sequelize.define(
+const Appt = sequelize.define(
   "appt", {
     apptDate: {
       type: Sequelize.STRING,
@@ -16,5 +16,14 @@ const Appts = sequelize.define(
 
 Appts.belongsTo(Customers);
 Customers.hasMany(Appts);
+
+// Appt.sync({
+//   force: true
+// }).then(() => {
+//   return Appt.create({
+//     appDate: 'Aug 01, 2018',
+//     employeeId: 1,
+//   });
+// });
 
 module.exports = Appts;
