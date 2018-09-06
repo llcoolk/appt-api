@@ -1,21 +1,22 @@
-const Sequelize = require('sequelize');
-const sequelize = require('./index');
+const Sequelize = require("sequelize");
+const sequelize = require("./index");
 
-const Appt = sequelize.define(
-  "appt", {
-    apptDate: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    employeeId: {
-      type: Sequelize.INTEGER,
-      allowNull: false
-    },
-    timeStamps: false
-  });
+const Appt = sequelize.define("appt", {
+  apptDate: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  employeeId: {
+    type: Sequelize.INTEGER,
+    allowNull: false
+  },
+  timeStamps: false
+});
 
-Appts.belongsTo(Customers);
-Customers.hasMany(Appts);
+Appt.belongsToMany(Customers);
+Customers.belongsToMany(Appt);
+Appt.belongsToMany(Employees);
+Employees.belongsToMany(Appt);
 
 // Appt.sync({
 //   force: true
@@ -26,4 +27,4 @@ Customers.hasMany(Appts);
 //   });
 // });
 
-module.exports = Appts;
+module.exports = Appt;
