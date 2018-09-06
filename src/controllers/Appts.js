@@ -1,20 +1,18 @@
-const Appts = require('../models/Appt');
+const Appt = require("../models/Appt");
 
 const getAll = (req, res) => {
-  Appts.findAll({}).then(appts => res.json(appts));
-}
+  Appt.findAll({}).then(appts => res.json(appts));
+};
 
 const getOne = (req, res) => {
-  Appts.findOne({
+  Appt.findOne({
     where: {
       id: req.params.id
     }
-  }).then(appts =>
-    res.json(appts));
-}
+  }).then(appts => res.json(appts));
+};
 
 const create = (req, res) => {
-
   const newAppt = {
     appDate: req.body.appDate,
     employeeId: req.body.employeeId
@@ -27,13 +25,10 @@ const create = (req, res) => {
         Error: err
       })
     );
-}
+};
 
 const update = (req, res) => {
-  const {
-    appDate,
-    employeeId
-  } = req.body;
+  const { appDate, employeeId } = req.body;
 
   const updatedAppt = {};
   if (appDate) {
@@ -44,31 +39,31 @@ const update = (req, res) => {
   }
 
   Appt.update(updatedAppt, {
-      where: {
-        id: req.params.id
-      }
-    })
+    where: {
+      id: req.params.id
+    }
+  })
     .then(newApp => res.json(newapp))
     .catch(err =>
       res.json({
         Error: err
       })
     );
-}
+};
 
 const remove = (req, res) => {
   Appt.destroy({
-      where: {
-        id: req.params.id
-      }
-    })
+    where: {
+      id: req.params.id
+    }
+  })
     .then(deleteAppt => res.json(deleteAppt))
     .catch(err =>
       res.json({
         Error: err
       })
     );
-}
+};
 
 module.exports = {
   getAll,
@@ -76,4 +71,4 @@ module.exports = {
   create,
   update,
   remove
-}
+};
