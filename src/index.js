@@ -17,10 +17,10 @@ sequelize
     console.error("Unable to connect to the database:", err);
   });
 
-app.use("/appts", Appts);
+app.use("/appts", Appt);
 app.use("/customers", Customers);
 app.use("/employees", Employees);
 
-app.listen(6000, () =>
-  console.log("Server connected at http://localhost:6000...")
+app.listen(5005, () =>
+  console.log("Server connected at http://localhost:5005...")
 );
