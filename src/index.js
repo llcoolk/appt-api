@@ -17,9 +17,11 @@ sequelize
     console.error("Unable to connect to the database:", err);
   });
 
-app.use("/appts", Appt);
+app.use("/appts", Appts);
 app.use("/customers", Customers);
 app.use("/employees", Employees);
+
+// this is a change to test the git branches //
 
 app.listen(6000, () =>
   console.log("Server connected at http://localhost:6000...")
